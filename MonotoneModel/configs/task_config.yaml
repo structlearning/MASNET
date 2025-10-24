@@ -1,0 +1,158 @@
+Common:
+  loader_workers: 2
+  eval_every: 5
+  wd: 0.0 
+  lr: 0.001
+  max_epochs: 100
+  lr_factor: .7
+  optim_type: Adam
+  seed: 4
+  take_last: False
+  num_train_samples: 10000
+  num_test_samples: 1000
+  num_val_samples: 1000
+Task_specific:
+  ReLUMasNet:
+    HardPair:
+      num_channels: 2
+      input_dim: 1
+      hidden_dims: [1,1,1,1]
+      output_dim: 1
+      activation: hat
+    SubSet:
+      mlp_act: l_relu
+      lrelu_slope: 0.08
+      hat_start: 0
+      hat_width: 1
+      activation: relu
+      show_change: False
+      sig_norm: False
+      bs: 128
+      hidden_dims: []
+      num_channels: 256
+      agg: 'sum'
+      max_epochs: 100
+    FacilityLocation:
+        mlp_act: l_relu
+        lrelu_slope: 0.08
+        hat_start: 0
+        hat_width: 1
+        activation: relu
+        show_change: False
+        sig_norm: False
+        bs: 64
+        hidden_dims: [256, 256]
+        num_channels: 256
+        agg: 'sum'
+        max_epochs: 200
+    RealWorldSubSet:
+      bs: 1
+      activation: hat
+      num_channels: 2048
+      hidden_dims: []
+      d: 768
+      out_dim: 768
+  DeepSets:
+    HardPair:
+      num_channels: 2
+      input_dim: 1
+      hidden_dims: []
+      output_dim: 1
+    SubSet: 
+      num_train_samples: 10000
+      num_test_samples: 1000
+      num_val_samples: 1000 
+      bs: 64
+      lr: 0.001
+      lr_factor: 0.7
+      hidden_dim: 128
+      out_dim: 64
+    FacilityLocation:
+      mlp_act: l_relu
+      lrelu_slope: 0.08
+      hat_start: 0
+      hat_width: 1
+      activation: relu
+      show_change: False
+      sig_norm: False
+      bs: 64
+      hidden_dim: 256
+      out_dim: 1
+      num_channels: 256
+      agg: 'sum'
+      max_epochs: 200
+  MasNet:
+    HardPair:
+      num_channels: 2
+      input_dim: 1
+      hidden_dims: [1,1,1,1]
+      output_dim: 1
+      activation: hat
+    SubSet:
+      mlp_act: l_relu
+      lrelu_slope: 0.08
+      hat_start: 0
+      hat_width: 1
+      activation: trainable_hat
+      show_change: False
+      sig_norm: False
+      bs: 64
+      temp: 2.1
+      alpha: 5.0
+      hidden_dims: []
+      num_channels: 256
+      agg: 'sum'
+      max_epochs: 100
+    FacilityLocation:
+      mlp_act: l_relu
+      lrelu_slope: 0.05
+      hat_start: 0
+      hat_width: 1
+      activation: trainable_hat
+      show_change: False
+      sig_norm: False
+      bs: 128
+      temp: 1.1
+      alpha: 4.0
+      hidden_dims: [256,256]
+      num_channels: 256
+      agg: 'sum'
+      max_epochs: 300
+      seed: 0
+    RealWorldSubSet:
+      bs: 1
+      activation: hat
+      num_channels: 2048
+      hidden_dims: []
+      d: 768
+      out_dim: 768
+  SetTransformer:
+    HardPair:
+      num_channels: 2
+      input_dim: 1
+      hidden_dims: []
+      output_dim: 1
+    SubSet: 
+      num_train_samples: 10000
+      num_test_samples: 1000
+      num_val_samples: 1000 
+      bs: 64
+      hidden_dim: 32
+      out_dim: 32
+      encoder_type: isab
+      pooling_type: mean
+    FacilityLocation:
+        mlp_act: l_relu
+        lrelu_slope: 0.08
+        hat_start: 0
+        hat_width: 1
+        activation: relu
+        show_change: False
+        sig_norm: False
+        bs: 64
+        hidden_dim: 64
+        num_channels: 64
+        out_dim: 1
+        max_epochs: 200
+        encoder_type: isab
+        pooling_type: mean

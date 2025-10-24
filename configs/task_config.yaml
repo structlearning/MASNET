@@ -1,0 +1,113 @@
+DataStuff:
+  vocab: 100000
+
+Common:
+  loader_workers: 63
+  eval_every: 5
+  earlystopping_patience: 20
+  weight_decay: 0.0 
+  lr: 0.0005
+  max_epochs: 200
+  lr_factor: .7
+  optim_type: Adam
+  seed: 19
+  take_last: False
+  save_top_k: 10
+  reg: 0.0
+
+Task_specific:
+
+  DeepSets:
+    SyntheticSubSet: 
+      d: 768
+      hidden_dim: 50
+      out_dim: 50
+      agg: 'sum'
+
+    RealWorldSubSet:
+      d: 768 #20 # 768
+      hidden_dim: 50 #50 #[1000]
+      agg: 'max'
+      pointcloud_encoder: 'pointnet'
+      pointcloud_emb_dims: 20 # 768
+      pointnet_num_layers: 5
+
+  MonotoneNet:
+    SyntheticSubSet:
+      #mlp_act: l_relu
+      #lrelu_slope: 0.08
+      mlp_act: relu
+      d: 4
+      #temp: 2.1
+      #alpha: 5.0
+      hidden_dims: [8,8,8,8]
+      num_channels: 50
+      agg: 'sum'
+      integrand_hidden_dim: 10 #age 5
+      integrand_num_hidden_layers: 1
+
+    RealWorldSubSet:
+      mlp_act: relu #l_relu
+      lrelu_slope: 0.1 #0.1
+      d: 768 #768, 10 works
+      #temp: 2.00 0.50 (pt cloud)
+      #alpha: 6.0 2.15 (pt cloud)
+      hidden_dims: [1000] #[1000, 800] or [1000], 50 for pt cloud
+      num_channels: 100
+      agg: 'max'
+      integrand_hidden_dim: 15
+      integrand_num_hidden_layers: 1
+      pointcloud_encoder: 'pointnet'
+      pointcloud_emb_dims: 20
+      pointnet_num_layers: 5
+
+  OneWayMon:
+    SubSet:
+      activation_key: leaky_relu
+      leaky_relu_negative_slope: 0.01
+      m: 10
+      n: 100
+      d: 30
+      hidden_van: [8,8,8,8,8]
+      num_channels: 2048
+      outer_activation: identity
+
+    RealWorldSubSet:
+      mlp_act: l_relu
+      lrelu_slope: 0.01
+      bs: 128
+      d: 768
+      hidden_dims: [1000]
+      num_channels: 100
+      agg: 'sum'
+      outer_activation: identity
+
+  SetTransformer:
+    SyntheticSubSet: 
+      m: 10
+      n: 50
+      d: 4
+      in_dim: 4
+      hidden_dim: 32
+      out_dim: 64
+      encoder_type: isab
+      pooling_type: pma
+      
+    RealWorldSubSet:
+      d: 768
+      in_dim: 768
+      hidden_dim: 1000
+      encoder_type: isab
+      pooling_type: mean
+      out_dim: 50
+      pointcloud_encoder: 'pointnet'
+      pointnet_num_layers: 5
+
+  NeuralSFE:
+    RealWorldSubSet:
+      d: 768
+      hidden_dim: 1000
+      num_channels: 50
+      out_dim: 50
+      pointcloud_encoder: 'pointnet'
+      pointcloud_emb_dims: 768
