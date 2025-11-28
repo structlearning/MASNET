@@ -57,7 +57,7 @@ python main.py --model_type ReLUMasNet --test_dist
 
 
 
-## 📁 Project Structure
+## Project Structure
 ```
 .
 ├── MonotoneModel_real
