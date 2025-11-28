@@ -14,38 +14,43 @@ conda activate <environment_name_from_yml>
 ### Create Real Datasets
 #### MSWEB or MSNBC
 ```bash
-cd data
+d MonotoneModel_real/data
 python msweb_data_generator.py --DATASET_NAME MSWEB
 python msweb_data_generator.py --DATASET_NAME MSWEB
 ```
 #### Amazon
 ```bash
-cd data
+cd MonotoneModel_real/data
 python amazon.py --dataset_name bedding/feeding
 ```
 #### PointCloud
 ```bash
-cd data
+d MonotoneModel_real/data
 python pointcloud.py --s1_size 128 & python pointcloud.py --s1_size 256 & python pointcloud.py --s1_size 128
 ```
 ### Train and evaluate on Text datasets
 ```bash
+cd MonotoneModel_real
 ./run_datasets.sh
 ```
 ### Train and evaluate on PointCloud Datasets
 ```bash
+cd MonotoneModel_real
 ./run_pointcloud.sh
 ```
-### Train a model
+### Train a model on Synthetic Facility Location
 ```bash
+cd MonotoneModel_synthetic
 python main.py --task_type FacilityLocation --model_type MasNet
 ```
-### Use a different model or task
+### Train a model on Synthetic Set Containment
 ```bash
+cd MonotoneModel_synthetic
 python main.py --task_type SubSet --model_type SetTransformer
 ```
 ### Run out-of-distribution (OOD) test
 ```bash
+cd MonotoneModel_synthetic
 python main.py --model_type ReLUMasNet --test_dist
 ```
 
