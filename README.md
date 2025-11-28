@@ -1,7 +1,7 @@
 # Neural Monotone Set Functions
 A framework for training and evaluating **set neural models** — including `MasNet`, `ReLUMasNet`, `DeepSets`, and `SetTransformer` — on benchmark tasks such as `FacilityLocation` and `SubSet`. Built on **PyTorch Lightning**, the framework provides reproducible training, automatic checkpointing, and optional **out-of-distribution (OOD)** evaluation. 
 
-## 📦 Installation
+## Installation
 ```bash
 git clone https://github.com/yonatansverdlov/Monotone-Embedding.git
 cd <your_repo>
@@ -66,7 +66,7 @@ python main.py --model_type ReLUMasNet --test_dist
 ├── README.md
 ```
 
-## 🧬 Citation
+## Citation
 If you use this repository in your research, please cite:
 ```text
 @misc{sarangi2025monotoneseparablesetfunctions,
