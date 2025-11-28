@@ -1,22 +1,16 @@
-# 🧠 Graph Model Training Framework
-A modular framework for training and evaluating **set- and graph-based neural models** — including `MasNet`, `ReLUMasNet`, `DeepSets`, and `SetTransformer` — on benchmark tasks such as `FacilityLocation` and `SubSet`. Built on **PyTorch Lightning**, the framework provides reproducible training, automatic checkpointing, and optional **out-of-distribution (OOD)** evaluation.
-
-## 🚀 Features
-- Unified interface for multiple architectures  
-- Simple configuration via command-line arguments  
-- PyTorch Lightning integration for clean training loops  
-- Automatic OOD evaluation by doubling the input dimension  
-- Reproducible experiments with fixed random seeds  
+# Neural Monotone Set Functions
+A framework for training and evaluating **set neural models** — including `MasNet`, `ReLUMasNet`, `DeepSets`, and `SetTransformer` — on benchmark tasks such as `FacilityLocation` and `SubSet`. Built on **PyTorch Lightning**, the framework provides reproducible training, automatic checkpointing, and optional **out-of-distribution (OOD)** evaluation. 
 
 ## 📦 Installation
 ```bash
 git clone https://github.com/yonatansverdlov/Monotone-Embedding.git
 cd <your_repo>
-pip install -r requirements.txt
+conda env create -f dependencies.yml
+conda activate <environment_name_from_yml>
 ```
 *(Make sure `torch`, `pytorch-lightning`, and `easydict` are included in your `requirements.txt`.)*
 
-## 🧩 Usage
+## 
 ### Create Real Datasets
 #### MSWEB or MSNBC
 ```bash
@@ -55,48 +49,37 @@ python main.py --task_type SubSet --model_type SetTransformer
 python main.py --model_type ReLUMasNet --test_dist
 ```
 
-## ⚙️ Command-Line Arguments
+## Command-Line Arguments
 | Argument | Type | Default | Description |
 |-----------|------|----------|--------------|
 | `--task_type` | str | `FacilityLocation` | Task name (`FacilityLocation` or `SubSet`) |
 | `--model_type` | str | `MasNet` | Model architecture (`ReLUMasNet`, `DeepSets`, `MasNet`, `SetTransformer`) |
 
-## 🧠 Example Output
-```
-Starting training...
-Model MasNet | Task: FacilityLocation | m: 10, n: 20, d: 4 | Accuracy: 91.24 | OOD Accuracy: 84.67
-Final Results Summary:
-m: 10, n: 20, d: 4 -> Test Accuracy: 91.24 | Out-of-distribution: 84.67
-```
+
 
 ## 📁 Project Structure
 ```
 .
-├── main.py
-├── lightning_model.py
-├── utils.py
-├── requirements.txt
+├── MonotoneModel_real
+├── MonotoneModel_synthetic
+├── ddependencies.yaml
 ├── README.md
-└── data/
 ```
 
 ## 🧬 Citation
 If you use this repository in your research, please cite:
 ```text
-@misc{graphmodels2025,
-  author = {Sverdlov, Yonatan},
-  title  = {Graph Model Training Framework},
-  year   = {2025},
-  note   = {Technion – Israel Institute of Technology}
+@misc{sarangi2025monotoneseparablesetfunctions,
+      title={Monotone and Separable Set Functions: Characterizations and Neural Models}, 
+      author={Soutrik Sarangi and Yonatan Sverdlov and Nadav Dym and Abir De},
+      year={2025},
+      eprint={2510.23634},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/2510.23634}, 
 }
 ```
 
-## 🧩 Contributing
-Pull requests are welcome!  
-To add a new model:
-1. Implement it in `lightning_model.py` or create a new file under `models/`.
-2. Register it inside `get_args()` in `utils.py`.
-3. Run and test with `python main.py --model_type YourModelName`.
 
-## 📜 License
+## License
 MIT License © 2025 Yonatan Sverdlov
