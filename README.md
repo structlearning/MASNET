@@ -14,7 +14,7 @@ conda activate <environment_name_from_yml>
 ### Create Real Datasets
 #### MSWEB or MSNBC
 ```bash
-d MonotoneModel_real/data
+cd MonotoneModel_real/data
 python msweb_data_generator.py --DATASET_NAME MSWEB
 python msweb_data_generator.py --DATASET_NAME MSWEB
 ```
